@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Recursos educativos digitales</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Patrick+Hand&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Three.js para mostrar los modelos 3D -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module" src="js/java.js"></script>
+</head>
+<body>
+  <div class="tablero">
+
+    <header>
+      <h1>Recursos educativos digitales</h1>
+      <p>Elige un recurso y arrastra el objeto para verlo desde todos los lados.</p>
+    </header>
+
+    <main>
+      <article class="recurso v">
+        <span class="chincheta" aria-hidden="true"></span>
+        <div class="escenario3d" data-modelo="imagenes/Celula.glb" data-color="#2f9e74" role="img"
+             aria-label="Modelo 3D: arrástralo para girarlo en todas las direcciones">
+          <div class="estado">Cargando modelo 3D…</div>
+        </div>
+        <div class="contenido">
+          <span class="grado">Ciencias Naturales · Grado 5</span>
+          <h2>Células eucariotas y procariotas</h2>
+          <p>Compara los dos tipos de célula y descubre qué partes tiene cada una.</p>
+          <a class="abrir" href="celulas.html">Abrir recurso</a>
+        </div>
+      </article>
+
+      <article class="recurso a">
+        <span class="chincheta" aria-hidden="true"></span>
+        <div class="escenario3d" data-modelo="imagenes/Calculadora.glb" data-color="#3d7bd9" role="img"
+             aria-label="Modelo 3D: arrástralo para girarlo en todas las direcciones">
+          <div class="estado">Cargando modelo 3D…</div>
+        </div>
+        <div class="contenido">
+          <span class="grado">Matemáticas · Grado 4</span>
+          <h2>Calculadora de números romanos</h2>
+          <p>Convierte números a romanos y viceversa, y comprueba cómo se forman.</p>
+          <a class="abrir" href="romanos.html">Abrir recurso</a>
+        </div>
+      </article>
+
+      <article class="recurso o">
+        <span class="chincheta" aria-hidden="true"></span>
+        <div class="escenario3d" data-modelo="imagenes/Mapa.glb" data-color="#e0982f" role="img"
+             aria-label="Modelo 3D: arrástralo para girarlo en todas las direcciones">
+          <div class="estado">Cargando modelo 3D…</div>
+        </div>
+        <div class="contenido">
+          <span class="grado">Ciencias Sociales · Grado 4</span>
+          <h2>Mapa didáctico de Colombia</h2>
+          <p>Toca una región y conoce su cultura, sus tradiciones y más.</p>
+          <a class="abrir" href="mapa.html">Abrir recurso</a>
+        </div>
+      </article>
+    </main>
+
+    <footer class="repisa">Actividad universitaria · Recursos educativos digitales</footer>
+
+  </div>
+</body>
+</html>

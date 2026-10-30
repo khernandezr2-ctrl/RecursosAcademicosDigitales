@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Calcula Romana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/romanos.css">
+  <script type="module" src="js/romanos.js"></script>
+</head>
+<body>
+  <div class="banda" aria-hidden="true"></div>
+
+  <header>
+    <a class="volver" href="index.html">← Volver a los recursos</a>
+    <h1>Calcula Romana</h1>
+    <p class="placa">Matemáticas · Grado 4</p>
+    <p class="sub">Suma, resta, multiplica y divide usando solo letras: los números de la antigua Roma.</p>
+  </header>
+
+  <main>
+    <!-- ===== Calculadora ===== -->
+    <div class="calc-zona">
+      <section id="calculadora" class="calc" aria-label="Calculadora de números romanos">
+        <div class="pantalla" role="status" aria-live="polite">
+          <div id="expresion" class="expresion">&nbsp;</div>
+          <div id="principal" class="principal">_</div>
+          <div id="arabigo" class="arabigo">&nbsp;</div>
+        </div>
+        <p id="mensaje" class="mensaje ayuda" role="status" aria-live="polite"></p>
+
+        <div class="teclas">
+          <button class="tecla letra" data-letra="I" type="button">I</button>
+          <button class="tecla letra" data-letra="V" type="button">V</button>
+          <button class="tecla letra" data-letra="X" type="button">X</button>
+          <button class="tecla op" data-op="/" type="button" aria-label="dividir">÷</button>
+
+          <button class="tecla letra" data-letra="L" type="button">L</button>
+          <button class="tecla letra" data-letra="C" type="button">C</button>
+          <button class="tecla letra" data-letra="D" type="button">D</button>
+          <button class="tecla op" data-op="*" type="button" aria-label="multiplicar">×</button>
+
+          <button class="tecla letra" data-letra="M" type="button">M</button>
+          <button class="tecla ctrl" id="borrar" type="button" aria-label="borrar la última letra">⌫</button>
+          <button class="tecla ctrl" id="limpiar" type="button" aria-label="limpiar todo">AC</button>
+          <button class="tecla op" data-op="-" type="button" aria-label="restar">−</button>
+
+          <button class="tecla igual" id="igual" type="button" aria-label="igual">=</button>
+          <button class="tecla op" data-op="+" type="button" aria-label="sumar">+</button>
+        </div>
+
+        <label class="opcion"><input type="checkbox" id="ver-arabigo" checked> Mostrar también en números de hoy</label>
+      </section>
+    </div>
+
+    <div class="pruebas">
+      <p>Prueba con estas operaciones:</p>
+      <button class="prueba" type="button" data-a="XII" data-o="+" data-b="VIII">XII + VIII</button>
+      <button class="prueba" type="button" data-a="C" data-o="-" data-b="XXV">C − XXV</button>
+      <button class="prueba" type="button" data-a="VII" data-o="*" data-b="VI">VII × VI</button>
+      <button class="prueba" type="button" data-a="L" data-o="/" data-b="V">L ÷ V</button>
+      <button class="prueba" type="button" data-a="C" data-o="/" data-b="VII">C ÷ VII</button>
+    </div>
+
+    <!-- ===== Los siete símbolos ===== -->
+    <section class="bloque">
+      <h2>Los siete símbolos romanos</h2>
+      <p>Los romanos no usaban cifras como 1, 2 o 3: escribían los números con <b>letras</b>. Con solo siete se puede escribir cualquier número, desde el 1 hasta el 3999.</p>
+      <div class="simbolos">
+        <div class="piedra"><span class="letra-gr">I</span><span class="val">1</span><span class="pal">uno</span></div>
+        <div class="piedra"><span class="letra-gr">V</span><span class="val">5</span><span class="pal">cinco</span></div>
+        <div class="piedra"><span class="letra-gr">X</span><span class="val">10</span><span class="pal">diez</span></div>
+        <div class="piedra"><span class="letra-gr">L</span><span class="val">50</span><span class="pal">cincuenta</span></div>
+        <div class="piedra"><span class="letra-gr">C</span><span class="val">100</span><span class="pal">cien</span></div>
+        <div class="piedra"><span class="letra-gr">D</span><span class="val">500</span><span class="pal">quinientos</span></div>
+        <div class="piedra"><span class="letra-gr">M</span><span class="val">1000</span><span class="pal">mil</span></div>
+      </div>
+      <p class="nota">La C viene de la palabra latina <i>centum</i> (cien) y la M de <i>mille</i> (mil). Ordenadas de mayor a menor: M, D, C, L, X, V, I.</p>
+    </section>
+
+    <!-- ===== Reglas ===== -->
+    <section class="bloque">
+      <h2>Las reglas para escribirlos</h2>
+      <div class="reglas">
+        <article class="regla">
+          <h3>1. Se suma</h3>
+          <p>Si una letra igual o menor va <b>después</b> de otra, se suman.</p>
+          <p class="ej">VI = 5 + 1 = 6<br>XXV = 10 + 10 + 5 = 25<br>CLX = 100 + 50 + 10 = 160</p>
+        </article>
+        <article class="regla">
+          <h3>2. Se repite hasta 3 veces</h3>
+          <p>I, X, C y M pueden repetirse hasta tres veces seguidas. V, L y D <b>nunca</b> se repiten.</p>
+          <p class="ej">III = 3 · XXX = 30 · CCC = 300<br>VV no existe: 10 se escribe X</p>
+        </article>
+        <article class="regla">
+          <h3>3. Se resta</h3>
+          <p>Si una letra menor va <b>antes</b> de otra mayor, se resta. Solo I, X y C pueden restar: I antes de V o X, X antes de L o C, y C antes de D o M.</p>
+          <p class="ej">IV = 5 − 1 = 4 · IX = 9<br>XL = 40 · XC = 90<br>CD = 400 · CM = 900</p>
+        </article>
+        <article class="regla">
+          <h3>4. No hay cero</h3>
+          <p>Los romanos no tenían un símbolo para el cero ni usaban números negativos. Por eso la calculadora te avisa cuando un resultado no se puede escribir.</p>
+        </article>
+      </div>
+
+      <h3 class="subtitulo">Ejemplos para practicar</h3>
+      <div class="tabla-wrap">
+        <table>
+          <thead><tr><th>Número</th><th>Romano</th><th>Cómo se arma</th></tr></thead>
+          <tbody>
+            <tr><td>4</td><td class="rom">IV</td><td>5 − 1</td></tr>
+            <tr><td>9</td><td class="rom">IX</td><td>10 − 1</td></tr>
+            <tr><td>14</td><td class="rom">XIV</td><td>10 + (5 − 1)</td></tr>
+            <tr><td>19</td><td class="rom">XIX</td><td>10 + (10 − 1)</td></tr>
+            <tr><td>40</td><td class="rom">XL</td><td>50 − 10</td></tr>
+            <tr><td>90</td><td class="rom">XC</td><td>100 − 10</td></tr>
+            <tr><td>400</td><td class="rom">CD</td><td>500 − 100</td></tr>
+            <tr><td>1994</td><td class="rom">MCMXCIV</td><td>1000 + (1000 − 100) + (100 − 10) + (5 − 1)</td></tr>
+            <tr><td>2026</td><td class="rom">MMXXVI</td><td>1000 + 1000 + 10 + 10 + 5 + 1 (¡el año actual!)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== Historia ===== -->
+    <section class="bloque">
+      <h2>Un poco de historia</h2>
+      <div class="historia">
+        <article class="hito">
+          <h3>Nacen en Roma</h3>
+          <p>Los números romanos se usaban en la antigua Roma, una ciudad que según la tradición fue fundada en el año 753 a. C. y que llegó a ser el centro de un enorme imperio.</p>
+        </article>
+        <article class="hito">
+          <h3>De las rayitas a las letras</h3>
+          <p>Se cree que empezaron como marcas para contar: la I sería un dedo, la V una mano abierta y la X dos V unidas. Con el tiempo se usaron letras del alfabeto latino para los números más grandes.</p>
+        </article>
+        <article class="hito">
+          <h3>Un sistema sin cero</h3>
+          <p>El sistema romano no tenía cero y era difícil multiplicar o dividir por escrito. Por eso los romanos hacían muchas cuentas con el ábaco, una tabla con fichas.</p>
+        </article>
+        <article class="hito">
+          <h3>Llegan los números de hoy</h3>
+          <p>Los números que usamos ahora (0, 1, 2… 9) vienen de la India y los árabes los llevaron a Europa. Con el tiempo, y con libros como el de Fibonacci en el año 1202, se hicieron más populares que los romanos, porque son mucho más fáciles para calcular.</p>
+        </article>
+      </div>
+
+      <h3 class="subtitulo">¿Dónde los vemos hoy?</h3>
+      <ul class="usos">
+        <li><b>En relojes:</b> muchos relojes de pared marcan las horas con romanos. En varios, el 4 se escribe IIII en lugar de IV.</li>
+        <li><b>En los siglos:</b> estamos en el siglo XXI.</li>
+        <li><b>En libros:</b> para numerar capítulos, tomos y unidades.</li>
+        <li><b>En nombres de reyes y papas:</b> Juan Pablo II, Isabel II, Felipe VI.</li>
+        <li><b>En monumentos y edificios:</b> para escribir el año en que se construyeron.</li>
+      </ul>
+    </section>
+  </main>
+
+  <div class="banda" aria-hidden="true"></div>
+</body>
+</html>

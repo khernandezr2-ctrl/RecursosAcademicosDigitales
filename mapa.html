@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mapa didáctico de Colombia · Ciencias Sociales · Grado 4</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="css/mapa.css">
+</head>
+<body>
+
+  <header class="cab">
+    <a class="volver" href="index.html">‹ Volver a los recursos</a>
+    <h1>Mapa de las regiones de Colombia</h1>
+    <div class="cab-fila">
+      <span class="grado">Ciencias Sociales · Grado 4</span>
+      <p>Toca una región para conocer su historia, su música, su comida y mucho más.</p>
+    </div>
+  </header>
+
+  <main class="mapa-caja">
+    <div class="mapa-marco">
+      <aside class="panel" aria-label="Regiones">
+        <h2>Regiones naturales</h2>
+        <div id="leyenda"></div>
+        <label class="opcion"><input type="checkbox" id="ver-capitales" checked> Mostrar capitales</label>
+        <p class="consejo">Acércate con la rueda del mouse para ver los nombres de las capitales.</p>
+      </aside>
+      <div id="mapa" role="application" aria-label="Mapa satelital de Colombia dividido en regiones"></div>
+    </div>
+  </main>
+
+  <dialog id="modal" aria-labelledby="modal-titulo">
+    <button type="button" id="cerrar" aria-label="Cerrar">×</button>
+    <div id="modal-contenido"></div>
+  </dialog>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="js/colombia-regiones.js"></script>
+  <script src="js/mapa-datos.js"></script>
+  <script src="js/mapa.js"></script>
+</body>
+</html>

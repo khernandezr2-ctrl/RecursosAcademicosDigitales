@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Células eucariotas y procariotas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Patrick+Hand&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/celulas.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module" src="js/celulas.js"></script>
+</head>
+<body>
+
+  <!-- Ambiente: citoplasma con burbujas -->
+  <div class="fondo" aria-hidden="true">
+    <span class="burbuja" style="--x:6%;  --d:46px; --t:19s; --r:-3s"></span>
+    <span class="burbuja" style="--x:20%; --d:22px; --t:14s; --r:-9s"></span>
+    <span class="burbuja" style="--x:38%; --d:64px; --t:24s; --r:-14s"></span>
+    <span class="burbuja" style="--x:55%; --d:30px; --t:16s; --r:-5s"></span>
+    <span class="burbuja" style="--x:72%; --d:54px; --t:21s; --r:-11s"></span>
+    <span class="burbuja" style="--x:88%; --d:26px; --t:15s; --r:-7s"></span>
+  </div>
+
+  <header>
+    <a class="volver" href="index.html">← Volver a los recursos</a>
+    <h1>Células eucariotas y procariotas</h1>
+    <p>Ciencias Naturales · Grado 5</p>
+  </header>
+
+  <main>
+    <div class="pestanas" role="tablist" aria-label="Tipo de célula">
+      <button class="tab" role="tab" data-clave="eucariota" aria-selected="true">Célula eucariota</button>
+      <button class="tab" role="tab" data-clave="procariota" aria-selected="false">Célula procariota</button>
+    </div>
+
+    <section class="zona">
+      <!-- Visor 3D con puntos -->
+      <div class="visor">
+        <div id="escena" class="escena"><div id="estado">Cargando modelo 3D…</div></div>
+        <div id="puntos" class="puntos"></div>
+        <p class="pista">Arrastra para girar · toca un punto numerado</p>
+
+        <div id="ventana" class="ventana" role="dialog" aria-labelledby="v-titulo" hidden>
+          <button id="cerrar" class="cerrar" type="button" aria-label="Cerrar">×</button>
+          <div class="v-cabeza">
+            <img id="v-img" alt="" width="92" height="92" hidden>
+            <h3 id="v-titulo"></h3>
+          </div>
+          <dl>
+            <dt>Está compuesto por</dt><dd id="v-compuesto"></dd>
+            <dt>Sirve para</dt><dd id="v-sirve"></dd>
+            <dt>Se parece a…</dt><dd id="v-parecido"></dd>
+            <dt>Dato curioso</dt><dd id="v-dato"></dd>
+          </dl>
+        </div>
+      </div>
+
+      <!-- Texto del tipo seleccionado -->
+      <div class="panel">
+        <h2 id="tipo-nombre"></h2>
+        <p id="tipo-intro"></p>
+        <h3>Estructuras para explorar</h3>
+        <div id="lista-estructuras" class="chips"></div>
+      </div>
+    </section>
+
+    <nav class="temario" aria-label="Temario">
+      <a href="#hechos">¿De qué estamos hechos?</a>
+      <a href="#micromundos">Micromundos en acción</a>
+      <a href="#fabrica">La fábrica interna</a>
+      <a href="#transforman">Células que transforman el mundo</a>
+      <a href="#movimiento">Células en movimiento</a>
+      <a href="#conclusion">Conclusión</a>
+    </nav>
+
+    <section class="tarjetas">
+      <article class="panel ancha">
+        <h2>¿Qué tan pequeña puede ser la vida?</h2>
+        <p>Aunque no las veas, las células están en todas partes. Son tan diminutas que miles de ellas caben en la cabeza de un alfiler, pero juntas forman todo lo que te rodea: desde una hoja de árbol hasta tu propio cuerpo.</p>
+        <p>¿Te has preguntado cómo algo tan pequeño puede ser tan poderoso? Hoy exploraremos los dos grandes tipos de células que dominan el mundo microscópico: procariotas y eucariotas.</p>
+      </article>
+
+      <article class="panel ancha" id="hechos">
+        <h2>¿De qué estamos hechos?</h2>
+        <p>Se cree que las células surgieron en los mares primigenios hace miles de años. Estas primeras células eran cápsulas de lípidos que contenían materiales genéticos y otras sustancias necesarias para la vida.</p>
+        <p>Con el tiempo, comenzaron a formar alianzas entre distintos tipos de partículas; algunas proporcionaban energía mientras que otras ofrecían protección. Esta colaboración permitió el desarrollo de células más complejas con organelos especializados que conocemos hoy en día.</p>
+      </article>
+
+      <h2 class="seccion" id="micromundos">Micromundos en acción</h2>
+      <article class="panel">
+        <h2>Procariotas</h2>
+        <p>Organismos simples y pequeños que carecen de núcleo, como las bacterias. Son las células más antiguas y resistentes del planeta.</p>
+      </article>
+      <article class="panel">
+        <h2>Eucariotas</h2>
+        <p>Células más complejas que tienen núcleo y organelos especializados. Se encuentran en animales, plantas, hongos y protozoarios.</p>
+      </article>
+      <article class="panel ancha">
+        <h2>Procariotas frente a eucariotas</h2>
+        <div class="tabla-wrap">
+          <table>
+            <thead><tr><th></th><th>Procariotas</th><th>Eucariotas</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Núcleo</th><td>No tienen</td><td>Sí tienen</td></tr>
+              <tr><th scope="row">ADN</th><td>En una región llamada nucleoide</td><td>Dentro del núcleo</td></tr>
+              <tr><th scope="row">Organelos</th><td>Sin organelos con membrana</td><td>Con organelos con membrana</td></tr>
+              <tr><th scope="row">Tamaño</th><td>Más pequeñas</td><td>Más grandes</td></tr>
+              <tr><th scope="row">Ejemplos</th><td>Bacterias</td><td>Animales, plantas, hongos y protozoarios</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+      <article class="panel ancha">
+        <h2>¿Quién gana la batalla microscópica?</h2>
+        <p><b>Procariotas:</b> si se tratara de una competencia por resistencia y adaptación, llevarían ventaja, pues pueden sobrevivir en ambientes extremos como volcanes o el fondo del océano.</p>
+        <p><b>Eucariotas:</b> si hablamos de organización y especialización, son las verdaderas campeonas, al desarrollar tejidos y órganos complejos que permiten la existencia de organismos multicelulares.</p>
+      </article>
+
+      <h2 class="seccion" id="fabrica">La fábrica interna de las células</h2>
+      <article class="panel ancha">
+        <p>Cada célula es como una ciudad microscópica, con estructuras especializadas que cumplen funciones precisas. Sin esta organización interna, las células no podrían crecer, reproducirse ni interactuar con su entorno.</p>
+        <p>Explora cada estructura en el modelo 3D de arriba: toca los puntos numerados de la célula eucariota y de la procariota.</p>
+      </article>
+      <article class="panel">
+        <h2>Organelos exclusivos: células vegetales</h2>
+        <ul class="lista">
+          <li><b>Cloroplastos:</b> realizan la fotosíntesis, convirtiendo energía solar en alimento.</li>
+          <li><b>Vacuola central:</b> almacena agua, nutrientes y desechos, además de mantener la turgencia celular.</li>
+          <li><b>Pared celular (en vegetales y hongos):</b> brinda soporte y protección.</li>
+        </ul>
+      </article>
+      <article class="panel">
+        <h2>Organelos exclusivos: células fúngicas</h2>
+        <ul class="lista">
+          <li><b>Glucosomas:</b> facilitan la glucólisis y almacenan carbohidratos en hongos.</li>
+          <li><b>Peroxisomas:</b> metabolizan ácidos grasos y detoxifican sustancias en hongos.</li>
+          <li><b>Vesículas apicales:</b> facilitan el crecimiento de hongos al transportar enzimas y materiales.</li>
+        </ul>
+      </article>
+
+      <h2 class="seccion" id="transforman">Células que transforman el mundo</h2>
+      <article class="panel ancha">
+        <p>Las células no solo existen en los libros de texto, sino que su impacto es visible en nuestra vida cotidiana. Desde los fermentos que crean el yogur hasta las células madre que revolucionan la medicina, el conocimiento celular impulsa avances increíbles.</p>
+        <p>Comprender cómo funcionan las células permite desarrollar tratamientos médicos, mejorar la agricultura y hasta diseñar tecnologías inspiradas en la naturaleza.</p>
+      </article>
+      <article class="panel">
+        <h2>Células madre en la medicina regenerativa</h2>
+        <p>Estas células especiales pueden convertirse en cualquier tipo de tejido, abriendo posibilidades para el tratamiento de lesiones o enfermedades degenerativas.</p>
+      </article>
+      <article class="panel">
+        <h2>Bacterias benéficas en los alimentos</h2>
+        <p>Los probióticos ayudan a equilibrar la microbiota intestinal, mejorando la digestión y fortaleciendo el sistema inmune.</p>
+      </article>
+      <article class="panel">
+        <h2>Avances en el estudio del cáncer</h2>
+        <p>Estudiar cómo crecen y se dividen las células ayuda a los científicos a entender el cáncer y a buscar mejores tratamientos.</p>
+      </article>
+      <article class="panel">
+        <h2>Biotecnología agrícola</h2>
+        <p>Algunas bacterias del suelo fijan nitrógeno, permitiendo que las plantas crezcan mejor sin depender de fertilizantes químicos.</p>
+      </article>
+
+      <h2 class="seccion" id="movimiento">Células en movimiento</h2>
+      <article class="panel">
+        <h2>Cómo se desplazan</h2>
+        <p>Algunas desarrollan estructuras especializadas para moverse, como los flagelos de ciertas bacterias o los pseudópodos de amibas, que les permiten desplazarse en busca de alimento o escapar de amenazas.</p>
+      </article>
+      <article class="panel">
+        <h2>Cómo se especializan</h2>
+        <p>En animales, plantas y otros organismos eucariotas, las células se especializan para realizar funciones específicas, como las neuronas que transmiten señales o las células musculares que permiten el movimiento.</p>
+      </article>
+      <article class="panel ancha">
+        <h2>Comunicación celular</h2>
+        <p>Las células se comunican entre sí mediante señales químicas, permitiendo que los tejidos trabajen coordinadamente en procesos como el crecimiento, la cicatrización o la respuesta inmunitaria.</p>
+        <ul class="lista">
+          <li><b>Señales hormonales en plantas:</b> permiten que las plantas crezcan hacia la luz o cierren sus hojas ante el contacto.</li>
+          <li><b>Comunicación entre bacterias:</b> las bacterias pueden coordinarse para formar colonias o atacar conjuntamente a un huésped.</li>
+          <li><b>Impulsos eléctricos en neuronas:</b> facilitan la transmisión rápida de información en el sistema nervioso.</li>
+          <li><b>Señales químicas en hongos:</b> permiten que estos organismos reconozcan nutrientes y formen esporas.</li>
+        </ul>
+      </article>
+
+      <article class="panel ancha" id="conclusion">
+        <h2>Conclusión</h2>
+        <p>Las células son mucho más que estructuras microscópicas; son los cimientos de toda la vida en la Tierra. Su diversidad, especialización y capacidad de adaptación les permiten transformar el mundo.</p>
+        <p>Al comprender sus funciones, no solo entendemos mejor la naturaleza, sino que también abrimos puertas para innovaciones en nuestra salud, alimentación y medio ambiente.</p>
+      </article>
+    </section>
+  </main>
+
+  <!-- Panel del modo calibrar: solo aparece con celulas.html?calibrar -->
+  <aside id="calibrar" class="calibrar" hidden>
+    <b>Modo calibrar</b>
+    <p>1) Elige la estructura. 2) Gira el modelo y toca justo encima de ella. Repite. 3) Copia el código y pégalo en <code>js/puntos.js</code>.</p>
+    <select id="cal-punto" aria-label="Estructura a colocar"></select>
+    <textarea id="cal-salida" rows="8" readonly></textarea>
+    <button id="cal-copiar" type="button">Copiar código</button>
+  </aside>
+
+</body>
+</html>
