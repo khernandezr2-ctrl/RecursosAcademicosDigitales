@@ -1,0 +1,253 @@
+/* ===== Variables ===== */
+:root {
+  --madera: #8a5a2f;
+  --madera-oscura: #5a3a1c;
+  --tablero: #24503e;
+  --tiza: #f7f5ea;
+  --tiza-amarilla: #f4d35e;
+  --papel: #fffdf6;
+  --tinta: #1f2f36;
+  --tinta-suave: #44585f;
+  --verde: #17694d;
+  --verde-claro: #d6efe5;
+  --azul: #214f96;
+  --azul-claro: #dae6f8;
+  --ocre: #9a5f0c;
+  --ocre-claro: #f9e8c8;
+  --salida: cubic-bezier(.23, 1, .32, 1);
+  --marco: clamp(10px, 2.4vw, 24px);
+}
+
+* { box-sizing: border-box; margin: 0; }
+html { -webkit-text-size-adjust: 100%; }
+@media (min-width: 1500px) { html { font-size: 112.5%; } } /* pantallas grandes */
+
+/* ===== Marco de madera ===== */
+body {
+  min-height: 100vh;
+  min-height: 100dvh; /* evita el bug de 100vh en celular */
+  background: repeating-linear-gradient(90deg, #8a5a2f 0 7px, #7e5128 7px 10px, #94622f 10px 19px, #86572c 19px 22px);
+  padding:
+    max(var(--marco), env(safe-area-inset-top))
+    max(var(--marco), env(safe-area-inset-right))
+    max(var(--marco), env(safe-area-inset-bottom))
+    max(var(--marco), env(safe-area-inset-left));
+  font-family: "Patrick Hand", system-ui, sans-serif;
+  font-size: 1.15rem;
+  color: var(--tinta);
+  line-height: 1.4;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ===== Tablero verde ===== */
+.tablero {
+  min-height: calc(100vh - 2 * var(--marco));
+  min-height: calc(100dvh - 2 * var(--marco));
+  display: flex;
+  flex-direction: column;
+  overflow-x: clip; /* las hojas inclinadas nunca provocan scroll horizontal */
+  border-radius: 6px;
+  background:
+    radial-gradient(ellipse at 18% 12%, rgba(255, 255, 255, .08), transparent 45%),
+    radial-gradient(ellipse at 82% 70%, rgba(255, 255, 255, .06), transparent 50%),
+    var(--tablero);
+  box-shadow:
+    inset 0 0 0 3px var(--madera-oscura),
+    inset 0 0 60px rgba(0, 0, 0, .5),
+    0 6px 18px rgba(0, 0, 0, .35);
+}
+
+header { text-align: center; padding: clamp(24px, 5vw, 44px) 16px clamp(20px, 4vw, 36px); }
+header h1 {
+  font-family: "Gochi Hand", cursive;
+  font-weight: 400;
+  font-size: clamp(2rem, 6vw, 4rem);
+  line-height: 1.15;
+  color: var(--tiza);
+  text-shadow: 0 0 2px rgba(255, 255, 255, .5);
+  text-decoration: underline wavy var(--tiza-amarilla);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 12px;
+  max-width: 16ch;
+  margin: 0 auto;
+  overflow-wrap: anywhere;
+}
+header p {
+  margin: 22px auto 0;
+  max-width: 44ch;
+  color: #cfe6dc;
+  font-size: clamp(1.05rem, 2.4vw, 1.25rem);
+}
+
+/* ===== Tarjetas: hojas cuadriculadas pegadas al tablero ===== */
+main {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px clamp(14px, 3vw, 28px) 48px;
+  display: grid;
+  /* min(100%, 260px) evita desbordes en pantallas muy angostas */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 34px clamp(18px, 3vw, 30px);
+  flex: 1;
+}
+.recurso {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border-radius: 6px;
+  background-color: var(--papel);
+  background-image:
+    linear-gradient(#e3ede9 1px, transparent 1px),
+    linear-gradient(90deg, #e3ede9 1px, transparent 1px);
+  background-size: 22px 22px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .4);
+  transform: rotate(var(--giro, 0deg));
+  animation: entrada 450ms var(--salida) both;
+  animation-delay: calc(var(--n, 0) * 70ms + 150ms);
+}
+.recurso:nth-child(1) { --giro: -1deg;  --n: 0; }
+.recurso:nth-child(2) { --giro: .8deg;  --n: 1; }
+.recurso:nth-child(3) { --giro: -.5deg; --n: 2; }
+.v { --c: var(--verde); --c-claro: var(--verde-claro); }
+.a { --c: var(--azul);  --c-claro: var(--azul-claro); }
+.o { --c: var(--ocre);  --c-claro: var(--ocre-claro); }
+
+/* Tablet: con 2 columnas, la tercera hoja queda centrada abajo */
+@media (min-width: 600px) and (max-width: 899px) {
+  .recurso:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    width: min(100%, 440px);
+    justify-self: center;
+  }
+}
+
+@keyframes entrada {
+  from { opacity: 0; transform: translateY(16px) rotate(var(--giro, 0deg)); }
+  to   { opacity: 1; transform: rotate(var(--giro, 0deg)); }
+}
+
+/* Chincheta */
+.chincheta {
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin-left: -10px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ff8a7a, #c0392b 60%, #8e2a20);
+  box-shadow: 0 3px 4px rgba(0, 0, 0, .45);
+  z-index: 2;
+}
+
+/* ===== Escenario 3D (proporción fija: se adapta al ancho de la tarjeta) ===== */
+.escenario3d {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  min-height: 200px;
+  max-height: 340px;
+  margin: 18px 16px 0;
+  border-radius: 4px;
+  border: 2px solid var(--c);
+  background: radial-gradient(circle at 50% 40%, #ffffff, var(--c-claro));
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  overflow: hidden;
+}
+.escenario3d:active { cursor: grabbing; }
+.escenario3d canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+.estado {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 12px;
+  text-align: center;
+  color: var(--tinta-suave);
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+/* ===== Texto de la tarjeta ===== */
+.contenido { padding: 16px 20px 22px; display: flex; flex-direction: column; flex: 1; }
+.grado {
+  align-self: flex-start;
+  padding: 2px 12px;
+  border-radius: 999px;
+  background: var(--c-claro);
+  color: var(--c);
+  border: 1.5px solid var(--c);
+  font-size: 1rem;
+}
+h2 {
+  font-family: "Gochi Hand", cursive;
+  font-weight: 400;
+  font-size: clamp(1.45rem, 3.4vw, 1.75rem);
+  line-height: 1.15;
+  margin: 12px 0 8px;
+  overflow-wrap: anywhere;
+}
+.contenido p { color: var(--tinta-suave); flex: 1; }
+.abrir {
+  display: block;
+  margin-top: 16px;
+  padding: 10px 16px;
+  min-height: 44px; /* tamaño mínimo cómodo para el dedo */
+  border-radius: 999px;
+  background: var(--c);
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: transform 160ms var(--salida), filter 160ms var(--salida);
+}
+@media (hover: hover) and (pointer: fine) {
+  .abrir:hover { filter: brightness(1.12); transform: translateY(-2px); }
+}
+.abrir:active { transform: scale(.97); transition-duration: 90ms; }
+.abrir:focus-visible { outline: 4px solid var(--tiza-amarilla); outline-offset: 3px; }
+
+/* ===== Repisa de la tiza ===== */
+.repisa {
+  position: relative;
+  padding: 12px 20px 16px;
+  text-align: center;
+  color: #cfe6dc;
+  font-size: 1rem;
+  background: repeating-linear-gradient(90deg, #9a6a38 0 8px, #8a5a2f 8px 12px, #a2723c 12px 22px);
+  border-top: 4px solid var(--madera-oscura);
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 -6px 10px rgba(0, 0, 0, .35);
+}
+.repisa::before, .repisa::after {
+  content: "";
+  position: absolute;
+  top: -13px;
+  height: 9px;
+  border-radius: 3px;
+}
+.repisa::before { left: 12%; width: 38px; background: var(--tiza); }
+.repisa::after  { left: calc(12% + 52px); width: 30px; background: var(--tiza-amarilla); }
+
+/* ===== Celulares pequeños ===== */
+@media (max-width: 480px) {
+  main { gap: 30px; }
+  .contenido { padding: 14px 16px 18px; }
+  .escenario3d { margin: 16px 12px 0; }
+}
+
+/* ===== Celular acostado (poca altura) ===== */
+@media (max-height: 520px) and (orientation: landscape) {
+  header { padding: 16px 16px 12px; }
+  header h1 { font-size: 1.9rem; text-underline-offset: 8px; }
+  header p { margin-top: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .recurso { animation: none; }
+  .abrir { transition: none; }
+}
